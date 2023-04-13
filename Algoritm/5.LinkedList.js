@@ -37,6 +37,19 @@ class LinkedList {
     prevNode.next = newNode
   }
 
+  // append method
+  append(newData) {
+    let newNode = new Node(newData)
+    if (this.head === null) {
+      this.head = newNode
+    }
+    let last = this.head
+    while(last.next){
+      last = last.next
+    }
+    last.next = newNode
+  }
+
 }
 
 let llist = new LinkedList()
@@ -48,5 +61,6 @@ let wednesday = new Node('Chorshanba')
 llist.head.next = tuesday
 tuesday.next = wednesday
 
-llist.insertAfter(llist.head.next, "Yangi qiymat")
+// llist.insertAfter(llist.head.next, "Yangi qiymat")
+llist.append("Payshanba")
 llist.printList()

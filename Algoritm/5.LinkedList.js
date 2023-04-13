@@ -29,7 +29,7 @@ class LinkedList {
 
   // insetAfter method
   insertAfter(prevNode, newData) {
-    if (prevNode === null){
+    if (prevNode === null) {
       console.log("Tugun mavjud emas")
     }
     let newNode = new Node(newData)
@@ -44,10 +44,45 @@ class LinkedList {
       this.head = newNode
     }
     let last = this.head
-    while(last.next){
+    while (last.next) {
       last = last.next
     }
     last.next = newNode
+  }
+
+  // deleteNode
+  deleteNode(key) {
+    let temp = this.head
+
+    // checkout first node
+    // console.log(`temp: ${temp.data}`)
+    // console.log(`temp.next: ${temp.next.data}`)
+    // console.log(temp === key)
+    if (temp === key || temp.data === key) {
+      this.head = temp.next
+      temp = null
+    }
+
+    // chekcout next nodes
+    while (temp) {
+      // console.log(`temp: ${temp}`)
+      // console.log("temp.data: "+temp.data)
+      // console.log("key: "+key)
+      // console.log("temp: " + temp)
+      if (temp.data === key) {
+        console.log('tempdata=key')
+        break
+      }
+      let prev = temp
+      console.log(`prev.data: ${prev.data}`)
+      console.log("prev: "+ prev)
+      temp = temp.next
+
+      if (temp === null) return
+
+      prev.next = temp.next
+      temp = null
+    }
   }
 
 }
@@ -63,4 +98,8 @@ tuesday.next = wednesday
 
 // llist.insertAfter(llist.head.next, "Yangi qiymat")
 llist.append("Payshanba")
+llist.append("Juma")
+llist.printList()
+console.log("-----------")
+llist.deleteNode("Juma")
 llist.printList()

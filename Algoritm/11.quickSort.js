@@ -1,28 +1,22 @@
-// QUICKSORT
-
-function qsort(arr){
-  if(arr.length < 2){
-    return arr
-  } else{
-    let kichik = [];
-    let katta = [];
-    let ranNum = Math.floor(Math.random() * arr.length)
-    let pivot = arr.splice(ranNum, 1 );
-    console.log(`pivot: ${pivot}`)
-    for(let item of arr){
-      if(item <= pivot){
-        kichik.push(item)
-      } else {
-        katta.push(item)
-      }
-    }
-    console.log(qsort(kichik))
-    console.log(qsort(katta))
-    console.log(pivot)
-    
-    // console.log(qsort(kichik) + pivot + qsort(katta))
-
+const quickSort = (arr) => {
+  if (arr.length <= 1) {
+    return arr;
   }
-}
-qsort([4, 34, 23, 11, 5, 9, 2,8]);
 
+  let pivot = arr[0];
+  let leftArr = [];
+  let rightArr = [];
+
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] < pivot) {
+      leftArr.push(arr[i]);
+    } else {
+      rightArr.push(arr[i]);
+    }
+  }
+
+  return [...quickSort(leftArr), pivot, ...quickSort(rightArr)];
+};
+
+let myArray = [3, 7, 2, 5, 1, 4, 6, 8];
+console.log(quickSort(myArray)); 
